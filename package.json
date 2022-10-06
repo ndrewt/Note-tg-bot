@@ -1,7 +1,7 @@
 {
     "name": "notes_bot",
     "version": "1.0.0",
-    "description": "nodes bot telegram || telegraf framework",
+    "description": "node.js bot telegram || telegraf framework",
     "main": "app.js",
     "scripts": {
         "start": "node src/app.js",
