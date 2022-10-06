@@ -2,10 +2,10 @@ const { Markup, Composer } = require('telegraf')
 const composer = new Composer()
 
 composer.start(async(ctx) => {
-    await ctx.reply('👋')
-    await ctx.reply(`Hello,${ctx.message.from.first_name} , here you can create notes with statuses.\nEnter any you want, without restriction\nTry! It's easy😜 `)
-})
-
+        await ctx.reply('👋')
+        await ctx.reply(`Hello,${ctx.message.from.first_name} , here you can create notes with statuses.\nEnter any you want, without restriction\nTry! It's easy😜 `)
+    })
+    --rwegg
 composer.on('message', async(ctx) => {
     const deleteMessage = async() => {
         await ctx.telegram.deleteMessage(ctx.chat.id, ctx.update.message.message_id)
@@ -26,7 +26,12 @@ composer.action('done', async(ctx) => {
 
 composer.action('delete', async(ctx) => {
     await ctx.answerCbQuery()
-    await ctx.telegram.deleteMessage(ctx.chat.id, ctx.update.callback_query.message.message_id)
+    try {
+        await ctx.telegram.deleteMessage(ctx.chat.id, ctx.update.callback_query.message.message_id)
+    } catch (err) {
+        console.log(err)
+    }
+
 })
 
 module.exports = composer
